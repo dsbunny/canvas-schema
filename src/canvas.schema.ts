@@ -20,6 +20,10 @@ export const Viewport = z.object({
 export type Viewport = z.infer<typeof Viewport>;
 
 export const CanvasBase = z.object({
+	name: z.string()
+		.describe('A descriptive name for the canvas'),
+	tags: z.array(z.string())
+		.describe('The tags of the canvas'),
 	width: z.number().int().min(1).max(99999)
 		.describe('The width of the canvas'),
 	height: z.number().int().min(1).max(99999)
@@ -56,14 +60,25 @@ export type CanvasMetadata = z.infer<typeof CanvasMetadata>;
 export const Canvas = CanvasBase.merge(CanvasMetadata);
 export type Canvas = z.infer<typeof Canvas>;
 
+export const DbDtoFromCanvas = Canvas.transform((canvas: Canvas) => {
+	return {
+		...canvas,
+		tags: JSON.stringify(canvas.tags),
+		viewports: JSON.stringify(canvas.viewports),
+		capabilities: JSON.stringify(canvas.capabilities),
+	};
+});
+
 export const DbDtoToCanvas = z.object({
 	canvas_id: z.string().uuid(),
 	tenant_id: z.string().uuid(),
+	name: z.string(),
+	tags: z.string(),
 	width: z.number().int().min(1).max(99999),
 	height: z.number().int().min(1).max(99999),
 	fps: z.number().int().min(1).max(1000),
-	viewports: z.array(Viewport),
-	capabilities: z.array(CapabilityBase),
+	viewports: z.string(),
+	capabilities: z.string(),
 	create_timestamp: sqliteDateSchema,
 	modify_timestamp: sqliteDateSchema,
 	is_deleted: z.number().default(0),
@@ -71,6 +86,9 @@ export const DbDtoToCanvas = z.object({
 .transform((dto, ctx): Canvas => {
 	return {
 		...dto,
+		tags: JSON.parse(dto.tags),
+		viewports: JSON.parse(dto.viewports),
+		capabilities: JSON.parse(dto.capabilities),
 		is_deleted: Boolean(dto.is_deleted),
 	};
 });

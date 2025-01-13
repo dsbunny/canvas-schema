@@ -1,4 +1,7 @@
 # Changelog
+## v1.0.3
+- Add `name` and `tags` to the `Canvas`, enabling search and filter.
+
 ## v1.0.2
 - Remove `viewport_id` as a schema simplification.
 - Replace `CanvasCapability` with upstream `CapabilityBase`.
