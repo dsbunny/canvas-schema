@@ -22,8 +22,6 @@ export const CanvasCapability = Capability.omit({
     is_deleted: true,
 });
 export const CanvasBase = z.object({
-    tenant_id: z.string().uuid()
-        .describe('The tenant ID of the content'),
     width: z.number().int().min(1).max(99999)
         .describe('The width of the canvas'),
     height: z.number().int().min(1).max(99999)
@@ -35,16 +33,22 @@ export const CanvasBase = z.object({
     capabilities: z.array(CanvasCapability)
         .describe('The capabilities of the canvas'),
 });
-export const CanvasMetadata = z.object({
+export const CanvasRegistration = z.object({
+    tenant_id: z.string()
+        .describe('The tenant ID of the canvas'),
     canvas_id: z.string().uuid()
         .describe('The UUID of the canvas'),
     create_timestamp: z.string().datetime() // ISO 8601
-        .describe('The timestamp of when the canvas was created'),
+        .describe('The timestamp of the canvas creation'),
+})
+    .describe('The registration of the canvas');
+export const CanvasMetadata = CanvasRegistration.merge(z.object({
     modify_timestamp: z.string().datetime()
         .describe('The timestamp of when the canvas was last modified'),
     is_deleted: z.boolean().default(false)
         .describe('Whether the canvas is deleted'),
-});
+}))
+    .describe('The metadata of the canvas');
 export const Canvas = CanvasBase.merge(CanvasMetadata);
 export const DbDtoToCanvas = z.object({
     canvas_id: z.string().uuid(),

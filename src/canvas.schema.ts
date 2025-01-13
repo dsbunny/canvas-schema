@@ -28,8 +28,6 @@ export const CanvasCapability = Capability.omit({
 export type CanvasCapability = z.infer<typeof CanvasCapability>;
 
 export const CanvasBase = z.object({
-	tenant_id: z.string().uuid()
-		.describe('The tenant ID of the content'),
 	width: z.number().int().min(1).max(99999)
 		.describe('The width of the canvas'),
 	height: z.number().int().min(1).max(99999)
@@ -43,16 +41,25 @@ export const CanvasBase = z.object({
 });
 export type CanvasBase = z.infer<typeof CanvasBase>;
 
-export const CanvasMetadata = z.object({
+export const CanvasRegistration = z.object({
+	tenant_id: z.string()
+		.describe('The tenant ID of the canvas'),
 	canvas_id: z.string().uuid()
 		.describe('The UUID of the canvas'),
 	create_timestamp: z.string().datetime()  // ISO 8601
-		.describe('The timestamp of when the canvas was created'),
+		.describe('The timestamp of the canvas creation'),
+})
+	.describe('The registration of the canvas');
+export type CanvasRegistration = z.infer<typeof CanvasRegistration>;
+
+export const CanvasMetadata = CanvasRegistration.merge(z.object({
 	modify_timestamp: z.string().datetime()
 		.describe('The timestamp of when the canvas was last modified'),
 	is_deleted: z.boolean().default(false)
 		.describe('Whether the canvas is deleted'),
-});
+}))
+	.describe('The metadata of the canvas');
+export type CanvasMetadata = z.infer<typeof CanvasMetadata>;
 
 export const Canvas = CanvasBase.merge(CanvasMetadata);
 export type Canvas = z.infer<typeof Canvas>;

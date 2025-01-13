@@ -62,7 +62,6 @@ export declare const CanvasCapability: z.ZodObject<Omit<z.objectUtil.extendShape
 }>;
 export type CanvasCapability = z.infer<typeof CanvasCapability>;
 export declare const CanvasBase: z.ZodObject<{
-    tenant_id: z.ZodString;
     width: z.ZodNumber;
     height: z.ZodNumber;
     fps: z.ZodNumber;
@@ -129,7 +128,6 @@ export declare const CanvasBase: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     width: number;
     height: number;
-    tenant_id: string;
     fps: number;
     viewports: {
         viewport_id: string;
@@ -154,7 +152,6 @@ export declare const CanvasBase: z.ZodObject<{
 }, {
     width: number;
     height: number;
-    tenant_id: string;
     fps: number;
     viewports: {
         viewport_id: string;
@@ -178,24 +175,42 @@ export declare const CanvasBase: z.ZodObject<{
     }[];
 }>;
 export type CanvasBase = z.infer<typeof CanvasBase>;
-export declare const CanvasMetadata: z.ZodObject<{
+export declare const CanvasRegistration: z.ZodObject<{
+    tenant_id: z.ZodString;
     canvas_id: z.ZodString;
     create_timestamp: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    tenant_id: string;
+    create_timestamp: string;
+    canvas_id: string;
+}, {
+    tenant_id: string;
+    create_timestamp: string;
+    canvas_id: string;
+}>;
+export type CanvasRegistration = z.infer<typeof CanvasRegistration>;
+export declare const CanvasMetadata: z.ZodObject<z.objectUtil.extendShape<{
+    tenant_id: z.ZodString;
+    canvas_id: z.ZodString;
+    create_timestamp: z.ZodString;
+}, {
     modify_timestamp: z.ZodString;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, "strip", z.ZodTypeAny, {
+}>, "strip", z.ZodTypeAny, {
+    tenant_id: string;
     create_timestamp: string;
     modify_timestamp: string;
     is_deleted: boolean;
     canvas_id: string;
 }, {
+    tenant_id: string;
     create_timestamp: string;
     modify_timestamp: string;
     canvas_id: string;
     is_deleted?: boolean | undefined;
 }>;
+export type CanvasMetadata = z.infer<typeof CanvasMetadata>;
 export declare const Canvas: z.ZodObject<z.objectUtil.extendShape<{
-    tenant_id: z.ZodString;
     width: z.ZodNumber;
     height: z.ZodNumber;
     fps: z.ZodNumber;
@@ -259,12 +274,14 @@ export declare const Canvas: z.ZodObject<z.objectUtil.extendShape<{
         capability_id: string;
         row_number: number;
     }>, "many">;
-}, {
+}, z.objectUtil.extendShape<{
+    tenant_id: z.ZodString;
     canvas_id: z.ZodString;
     create_timestamp: z.ZodString;
+}, {
     modify_timestamp: z.ZodString;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}>, "strip", z.ZodTypeAny, {
+}>>, "strip", z.ZodTypeAny, {
     width: number;
     height: number;
     tenant_id: string;
