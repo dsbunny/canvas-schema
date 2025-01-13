@@ -1,10 +1,8 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import { z } from 'zod';
 import { sqliteDateSchema } from './sqlite-date.schema.js';
-import { Capability } from '@dsbunny/capability-schema';
+import { CapabilityBase } from '@dsbunny/capability-schema';
 export const Viewport = z.object({
-    viewport_id: z.string().uuid()
-        .describe('The UUID of the viewport'),
     reference_id: z.string()
         .describe('The reference ID of the viewport'),
     x: z.number().int()
@@ -15,22 +13,18 @@ export const Viewport = z.object({
         .describe('The width of the viewport'),
     height: z.number().int()
         .describe('The height of the viewport'),
-});
-export const CanvasCapability = Capability.omit({
-    create_timestamp: true,
-    modify_timestamp: true,
-    is_deleted: true,
-});
+})
+    .describe('The viewport');
 export const CanvasBase = z.object({
     width: z.number().int().min(1).max(99999)
         .describe('The width of the canvas'),
     height: z.number().int().min(1).max(99999)
         .describe('The height of the canvas'),
     fps: z.number().int().min(1).max(1000)
-        .describe('The maximum frames per second of the content'),
+        .describe('The maximum frames per second of the canvas'),
     viewports: z.array(Viewport)
         .describe('The viewports of the canvas'),
-    capabilities: z.array(CanvasCapability)
+    capabilities: z.array(CapabilityBase)
         .describe('The capabilities of the canvas'),
 });
 export const CanvasRegistration = z.object({
@@ -57,7 +51,7 @@ export const DbDtoToCanvas = z.object({
     height: z.number().int().min(1).max(99999),
     fps: z.number().int().min(1).max(1000),
     viewports: z.array(Viewport),
-    capabilities: z.array(CanvasCapability),
+    capabilities: z.array(CapabilityBase),
     create_timestamp: sqliteDateSchema,
     modify_timestamp: sqliteDateSchema,
     is_deleted: z.number().default(0),

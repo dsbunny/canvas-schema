@@ -1,4 +1,8 @@
 # Changelog
+## v1.0.2
+- Remove `viewport_id` as a schema simplification.
+- Replace `CanvasCapability` with upstream `CapabilityBase`.
+
 ## v1.0.1
 - Add `CanvasRegistration` as response to registering a _canvas_ definition.
 
