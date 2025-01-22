@@ -1,4 +1,7 @@
 # Changelog
+## v2.0.4
+- Rename `fps` to `frame_rate` for consistency.
+
 ## v1.0.3
 - Add `name` and `tags` to the `Canvas`, enabling search and filter.
 

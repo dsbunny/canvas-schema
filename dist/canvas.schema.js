@@ -24,7 +24,7 @@ export const CanvasBase = z.object({
         .describe('The width of the canvas'),
     height: z.number().int().min(1).max(99999)
         .describe('The height of the canvas'),
-    fps: z.number().int().min(1).max(1000)
+    frame_rate: z.number().int().min(1).max(1000)
         .describe('The maximum frames per second of the canvas'),
     viewports: z.array(Viewport)
         .describe('The viewports of the canvas'),
@@ -63,7 +63,7 @@ export const DbDtoToCanvas = z.object({
     tags: z.string(),
     width: z.number().int().min(1).max(99999),
     height: z.number().int().min(1).max(99999),
-    fps: z.number().int().min(1).max(1000),
+    frame_rate: z.number().int().min(1).max(1000),
     viewports: z.string(),
     capabilities: z.string(),
     create_timestamp: sqliteDateSchema,
