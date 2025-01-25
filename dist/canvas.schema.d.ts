@@ -48,14 +48,20 @@ export declare const CanvasBase: z.ZodObject<{
         mime_type: z.ZodString;
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
+        is_smooth: z.ZodBoolean;
+        is_power_efficient: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }, {
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     width: number;
@@ -74,6 +80,8 @@ export declare const CanvasBase: z.ZodObject<{
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }[];
 }, {
     width: number;
@@ -92,6 +100,8 @@ export declare const CanvasBase: z.ZodObject<{
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }[];
 }>;
 export type CanvasBase = z.infer<typeof CanvasBase>;
@@ -159,14 +169,20 @@ export declare const Canvas: z.ZodObject<z.objectUtil.extendShape<{
         mime_type: z.ZodString;
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
+        is_smooth: z.ZodBoolean;
+        is_power_efficient: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }, {
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }>, "many">;
 }, z.objectUtil.extendShape<{
     tenant_id: z.ZodString;
@@ -192,6 +208,8 @@ export declare const Canvas: z.ZodObject<z.objectUtil.extendShape<{
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }[];
     tenant_id: string;
     canvas_id: string;
@@ -215,6 +233,8 @@ export declare const Canvas: z.ZodObject<z.objectUtil.extendShape<{
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }[];
     tenant_id: string;
     canvas_id: string;
@@ -252,14 +272,20 @@ export declare const DbDtoFromCanvas: z.ZodEffects<z.ZodObject<z.objectUtil.exte
         mime_type: z.ZodString;
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
+        is_smooth: z.ZodBoolean;
+        is_power_efficient: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }, {
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }>, "many">;
 }, z.objectUtil.extendShape<{
     tenant_id: z.ZodString;
@@ -285,6 +311,8 @@ export declare const DbDtoFromCanvas: z.ZodEffects<z.ZodObject<z.objectUtil.exte
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }[];
     tenant_id: string;
     canvas_id: string;
@@ -308,6 +336,8 @@ export declare const DbDtoFromCanvas: z.ZodEffects<z.ZodObject<z.objectUtil.exte
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }[];
     tenant_id: string;
     canvas_id: string;
@@ -344,6 +374,8 @@ export declare const DbDtoFromCanvas: z.ZodEffects<z.ZodObject<z.objectUtil.exte
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }[];
     tenant_id: string;
     canvas_id: string;
@@ -407,6 +439,8 @@ export declare const DbDtoToCanvas: z.ZodEffects<z.ZodObject<{
         mime_type: string;
         mime_subtype: string;
         is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
     }[];
     tenant_id: string;
     canvas_id: string;
