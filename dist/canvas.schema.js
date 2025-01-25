@@ -1,7 +1,7 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import { z } from 'zod';
+import { CapabilityTypes } from '@dsbunny/capability-schema';
 import { sqliteDateSchema } from './sqlite-date.schema.js';
-import { CapabilityBase } from '@dsbunny/capability-schema';
 export const Viewport = z.object({
     reference_id: z.string()
         .describe('The reference ID of the viewport'),
@@ -28,7 +28,7 @@ export const CanvasBase = z.object({
         .describe('The maximum frames per second of the canvas'),
     viewports: z.array(Viewport)
         .describe('The viewports of the canvas'),
-    capabilities: z.array(CapabilityBase)
+    capabilities: z.array(CapabilityTypes)
         .describe('The capabilities of the canvas'),
 });
 export const CanvasRegistration = z.object({
