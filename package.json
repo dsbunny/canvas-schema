@@ -13,7 +13,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@dsbunny/capability-schema": "workspace:*",
+		"@dsbunny/capability-schema": "github:dsbunny/capability-schema#6d1e546",
 		"zod": "4.0.0-beta.20250424T163858"
 	},
 	"devDependencies": {
