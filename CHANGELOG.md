@@ -1,4 +1,7 @@
 # Changelog
+## v2.0.5
+- Bump to `zod@4.0.0-beta`.
+
 ## v2.0.4
 - Rename `fps` to `frame_rate` for consistency.
 
