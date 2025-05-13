@@ -40,14 +40,14 @@ export const CanvasRegistration = z.object({
         .describe('The ISO datetime of the canvas creation'),
 })
     .describe('The registration of the canvas');
-export const CanvasMetadata = CanvasRegistration.extend(z.object({
+export const CanvasMetadata = CanvasRegistration.extend({
     modify_timestamp: z.iso.datetime()
         .describe('The ISO datetime of when the canvas was last modified'),
     is_deleted: z.boolean().default(false)
         .describe('Whether the canvas is deleted'),
-}))
+})
     .describe('The metadata of the canvas');
-export const Canvas = CanvasBase.extend(CanvasMetadata);
+export const Canvas = CanvasBase.extend(CanvasMetadata.shape);
 export const DbDtoFromCanvas = Canvas.transform((canvas) => {
     return {
         ...canvas,

@@ -48,16 +48,16 @@ export const CanvasRegistration = z.object({
 	.describe('The registration of the canvas');
 export type CanvasRegistration = z.infer<typeof CanvasRegistration>;
 
-export const CanvasMetadata = CanvasRegistration.extend(z.object({
+export const CanvasMetadata = CanvasRegistration.extend({
 	modify_timestamp: z.iso.datetime()
 		.describe('The ISO datetime of when the canvas was last modified'),
 	is_deleted: z.boolean().default(false)
 		.describe('Whether the canvas is deleted'),
-}))
+})
 	.describe('The metadata of the canvas');
 export type CanvasMetadata = z.infer<typeof CanvasMetadata>;
 
-export const Canvas = CanvasBase.extend(CanvasMetadata);
+export const Canvas = CanvasBase.extend(CanvasMetadata.shape);
 export type Canvas = z.infer<typeof Canvas>;
 
 export const DbDtoFromCanvas = Canvas.transform((canvas: Canvas) => {
