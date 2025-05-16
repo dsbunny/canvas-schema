@@ -1,4 +1,7 @@
 # Changelog
+## v2.0.6
+- Bump to `zod@next` with `zod/v4` imports.
+
 ## v2.0.5
 - Bump to `zod@4.0.0-beta`.
 
