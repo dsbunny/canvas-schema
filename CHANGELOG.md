@@ -1,4 +1,7 @@
 # Changelog
+## v2.0.7
+- Add limits to array sizes, minimum 1 tag and viewport.
+
 ## v2.0.6
 - Bump to `zod@next` with `zod/v4` imports.
 

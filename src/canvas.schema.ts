@@ -22,7 +22,7 @@ export type Viewport = z.infer<typeof Viewport>;
 export const CanvasBase = z.object({
 	name: z.string()
 		.describe('A descriptive name for the canvas'),
-	tags: z.array(z.string())
+	tags: z.array(z.string()).min(1).max(100)
 		.describe('The tags of the canvas'),
 	width: z.number().int().min(1).max(99999)
 		.describe('The width of the canvas'),
@@ -30,9 +30,9 @@ export const CanvasBase = z.object({
 		.describe('The height of the canvas'),
 	frame_rate: z.number().int().min(1).max(1000)
 		.describe('The maximum frames per second of the canvas'),
-	viewports: z.array(Viewport)
+	viewports: z.array(Viewport).min(1).max(1000)
 		.describe('The viewports of the canvas'),
-	capabilities: z.array(CapabilityTypes)
+	capabilities: z.array(CapabilityTypes).max(1000)
 		.describe('The capabilities of the canvas'),
 });
 export type CanvasBase = z.infer<typeof CanvasBase>;
