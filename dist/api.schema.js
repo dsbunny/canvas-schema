@@ -1,0 +1,63 @@
+// vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
+import { z } from 'zod/v4';
+import { Canvas, CanvasBase, CanvasRegistration } from './canvas.schema.js';
+import { JsonPatchOperation } from './patch-operation.schema.js';
+// #region Errors
+export const ErrorResponse = z.object({
+    code: z.string()
+        .describe('Error code representing the type of error.'),
+    message: z.string()
+        .describe('Error message describing the issue.'),
+    detail: z.string()
+        .describe('Additional details about the error, if available.'),
+    timestamp: z.iso.datetime()
+        .describe('Timestamp when the error occurred (ISO_8601 format).'),
+})
+    .describe('Error response schema');
+// #endregion
+// #region WebHook
+export const WebHookRequest = z.object({
+    ref_id: z.string(),
+    class: z.string(),
+})
+    .describe('WebHook request schema');
+export const WebHookResponse = z.object({})
+    .describe('WebHook response schema');
+// #endregion
+// #region Canvases
+export const ListCanvasesRequest = z.object({})
+    .describe('List canvases request schema');
+export const ListCanvasesResponse = z.object({
+    canvases: z.array(Canvas),
+    next_token: z.string().nullable(),
+})
+    .describe('List assets response schema');
+export const ListDeletedCanvasesRequest = z.object({})
+    .describe('List deleted canvases request schema');
+export const ListDeletedCanvasesResponse = z.object({
+    canvases: z.array(Canvas),
+    next_token: z.string().nullable(),
+})
+    .describe('List deleted canvases response schema');
+export const CreateCanvasRequest = CanvasBase
+    .describe('Create canvas request schema');
+export const CreateCanvasResponse = CanvasRegistration
+    .describe('Create canvas response schema');
+export const GetCanvasRequest = z.object({})
+    .describe('Get canvas request schema');
+export const GetCanvasResponse = Canvas
+    .describe('Get canvas response schema');
+export const DeleteCanvasRequest = z.object({})
+    .describe('Delete canvas request schema');
+export const DeleteCanvasResponse = z.object({})
+    .describe('Delete canvas response schema');
+export const RecoverCanvasRequest = z.object({})
+    .describe('Recover canvas request schema');
+export const RecoverCanvasResponse = Canvas
+    .describe('Recover canvas response schema');
+export const UpdateCanvasRequest = z.array(JsonPatchOperation)
+    .describe('Update canvas request schema');
+export const UpdateCanvasResponse = Canvas
+    .describe('Update canvas response schema');
+// #endregion
+//# sourceMappingURL=api.schema.js.map

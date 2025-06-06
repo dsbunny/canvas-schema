@@ -1,4 +1,7 @@
 # Changelog
+## v2.1.8
+- Add API endpoint schemas.
+
 ## v2.0.7
 - Add limits to array sizes, minimum 1 tag and viewport.
 
