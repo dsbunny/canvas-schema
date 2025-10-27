@@ -1,19 +1,19 @@
-import { z } from 'zod/v4';
+import * as z from "zod";
 export declare const ErrorResponse: z.ZodObject<{
     code: z.ZodString;
     message: z.ZodString;
     detail: z.ZodString;
-    timestamp: z.iso.ZodISODateTime;
-}, {}, {}>;
+    timestamp: z.ZodISODateTime;
+}, z.core.$strip>;
 export type ErrorResponse = z.infer<typeof ErrorResponse>;
 export declare const WebHookRequest: z.ZodObject<{
     ref_id: z.ZodString;
     class: z.ZodString;
-}, {}, {}>;
+}, z.core.$strip>;
 export type WebHookRequest = z.infer<typeof WebHookRequest>;
-export declare const WebHookResponse: z.ZodObject<{}, {}, {}>;
+export declare const WebHookResponse: z.ZodObject<{}, z.core.$strip>;
 export type WebHookResponse = z.infer<typeof WebHookResponse>;
-export declare const ListCanvasesRequest: z.ZodObject<{}, {}, {}>;
+export declare const ListCanvasesRequest: z.ZodObject<{}, z.core.$strip>;
 export type ListCanvasesRequest = z.infer<typeof ListCanvasesRequest>;
 export declare const ListCanvasesResponse: z.ZodObject<{
     canvases: z.ZodArray<z.ZodObject<{
@@ -28,7 +28,7 @@ export declare const ListCanvasesResponse: z.ZodObject<{
             y: z.ZodNumber;
             width: z.ZodNumber;
             height: z.ZodNumber;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
             mime_subtype: z.ZodString;
             is_supported: z.ZodBoolean;
@@ -39,7 +39,7 @@ export declare const ListCanvasesResponse: z.ZodObject<{
             width: z.ZodNumber;
             height: z.ZodNumber;
             frame_rate: z.ZodNumber;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             mime_subtype: z.ZodString;
             is_supported: z.ZodBoolean;
             is_smooth: z.ZodBoolean;
@@ -48,7 +48,7 @@ export declare const ListCanvasesResponse: z.ZodObject<{
             codec: z.ZodString;
             sample_rate: z.ZodNumber;
             channels: z.ZodString;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             mime_subtype: z.ZodString;
             is_supported: z.ZodBoolean;
             mime_type: z.ZodLiteral<"image">;
@@ -56,17 +56,24 @@ export declare const ListCanvasesResponse: z.ZodObject<{
             height: z.ZodNumber;
             is_smooth: z.ZodLiteral<false>;
             is_power_efficient: z.ZodLiteral<true>;
-        }, {}, {}>]>>;
+        }, z.core.$strip>], "mime_type">>;
         tenant_id: z.ZodString;
         canvas_id: z.ZodUUID;
-        create_timestamp: z.iso.ZodISODateTime;
-        modify_timestamp: z.iso.ZodISODateTime;
+        create_timestamp: z.ZodISODateTime;
+        modify_timestamp: z.ZodISODateTime;
         is_deleted: z.ZodDefault<z.ZodBoolean>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     next_token: z.ZodNullable<z.ZodString>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type ListCanvasesResponse = z.infer<typeof ListCanvasesResponse>;
-export declare const ListDeletedCanvasesRequest: z.ZodObject<{}, {}, {}>;
+export declare const GetCanvasSuggestionsRequest: z.ZodObject<{}, z.core.$strip>;
+export type GetCanvasSuggestionsRequest = z.infer<typeof GetCanvasSuggestionsRequest>;
+export declare const GetCanvasSuggestionsResponse: z.ZodObject<{
+    c: z.ZodString;
+    s: z.ZodArray<z.ZodString>;
+}, z.core.$strip>;
+export type GetCanvasSuggestionsResponse = z.infer<typeof GetCanvasSuggestionsResponse>;
+export declare const ListDeletedCanvasesRequest: z.ZodObject<{}, z.core.$strip>;
 export type ListDeletedCanvasesRequest = z.infer<typeof ListDeletedCanvasesRequest>;
 export declare const ListDeletedCanvasesResponse: z.ZodObject<{
     canvases: z.ZodArray<z.ZodObject<{
@@ -81,7 +88,7 @@ export declare const ListDeletedCanvasesResponse: z.ZodObject<{
             y: z.ZodNumber;
             width: z.ZodNumber;
             height: z.ZodNumber;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
             mime_subtype: z.ZodString;
             is_supported: z.ZodBoolean;
@@ -92,7 +99,7 @@ export declare const ListDeletedCanvasesResponse: z.ZodObject<{
             width: z.ZodNumber;
             height: z.ZodNumber;
             frame_rate: z.ZodNumber;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             mime_subtype: z.ZodString;
             is_supported: z.ZodBoolean;
             is_smooth: z.ZodBoolean;
@@ -101,7 +108,7 @@ export declare const ListDeletedCanvasesResponse: z.ZodObject<{
             codec: z.ZodString;
             sample_rate: z.ZodNumber;
             channels: z.ZodString;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             mime_subtype: z.ZodString;
             is_supported: z.ZodBoolean;
             mime_type: z.ZodLiteral<"image">;
@@ -109,15 +116,15 @@ export declare const ListDeletedCanvasesResponse: z.ZodObject<{
             height: z.ZodNumber;
             is_smooth: z.ZodLiteral<false>;
             is_power_efficient: z.ZodLiteral<true>;
-        }, {}, {}>]>>;
+        }, z.core.$strip>], "mime_type">>;
         tenant_id: z.ZodString;
         canvas_id: z.ZodUUID;
-        create_timestamp: z.iso.ZodISODateTime;
-        modify_timestamp: z.iso.ZodISODateTime;
+        create_timestamp: z.ZodISODateTime;
+        modify_timestamp: z.ZodISODateTime;
         is_deleted: z.ZodDefault<z.ZodBoolean>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     next_token: z.ZodNullable<z.ZodString>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type ListDeletedCanvasesResponse = z.infer<typeof ListDeletedCanvasesResponse>;
 export declare const CreateCanvasRequest: z.ZodObject<{
     name: z.ZodString;
@@ -131,7 +138,7 @@ export declare const CreateCanvasRequest: z.ZodObject<{
         y: z.ZodNumber;
         width: z.ZodNumber;
         height: z.ZodNumber;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
@@ -142,7 +149,7 @@ export declare const CreateCanvasRequest: z.ZodObject<{
         width: z.ZodNumber;
         height: z.ZodNumber;
         frame_rate: z.ZodNumber;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         is_smooth: z.ZodBoolean;
@@ -151,7 +158,7 @@ export declare const CreateCanvasRequest: z.ZodObject<{
         codec: z.ZodString;
         sample_rate: z.ZodNumber;
         channels: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         mime_type: z.ZodLiteral<"image">;
@@ -159,16 +166,16 @@ export declare const CreateCanvasRequest: z.ZodObject<{
         height: z.ZodNumber;
         is_smooth: z.ZodLiteral<false>;
         is_power_efficient: z.ZodLiteral<true>;
-    }, {}, {}>]>>;
-}, {}, {}>;
+    }, z.core.$strip>], "mime_type">>;
+}, z.core.$strip>;
 export type CreateCanvasRequest = z.infer<typeof CreateCanvasRequest>;
 export declare const CreateCanvasResponse: z.ZodObject<{
     tenant_id: z.ZodString;
     canvas_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-}, {}, {}>;
+    create_timestamp: z.ZodISODateTime;
+}, z.core.$strip>;
 export type CreateCanvasResponse = z.infer<typeof CreateCanvasResponse>;
-export declare const GetCanvasRequest: z.ZodObject<{}, {}, {}>;
+export declare const GetCanvasRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetCanvasRequest = z.infer<typeof GetCanvasRequest>;
 export declare const GetCanvasResponse: z.ZodObject<{
     name: z.ZodString;
@@ -182,7 +189,7 @@ export declare const GetCanvasResponse: z.ZodObject<{
         y: z.ZodNumber;
         width: z.ZodNumber;
         height: z.ZodNumber;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
@@ -193,7 +200,7 @@ export declare const GetCanvasResponse: z.ZodObject<{
         width: z.ZodNumber;
         height: z.ZodNumber;
         frame_rate: z.ZodNumber;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         is_smooth: z.ZodBoolean;
@@ -202,7 +209,7 @@ export declare const GetCanvasResponse: z.ZodObject<{
         codec: z.ZodString;
         sample_rate: z.ZodNumber;
         channels: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         mime_type: z.ZodLiteral<"image">;
@@ -210,19 +217,19 @@ export declare const GetCanvasResponse: z.ZodObject<{
         height: z.ZodNumber;
         is_smooth: z.ZodLiteral<false>;
         is_power_efficient: z.ZodLiteral<true>;
-    }, {}, {}>]>>;
+    }, z.core.$strip>], "mime_type">>;
     tenant_id: z.ZodString;
     canvas_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type GetCanvasResponse = z.infer<typeof GetCanvasResponse>;
-export declare const DeleteCanvasRequest: z.ZodObject<{}, {}, {}>;
+export declare const DeleteCanvasRequest: z.ZodObject<{}, z.core.$strip>;
 export type DeleteCanvasRequest = z.infer<typeof DeleteCanvasRequest>;
-export declare const DeleteCanvasResponse: z.ZodObject<{}, {}, {}>;
+export declare const DeleteCanvasResponse: z.ZodObject<{}, z.core.$strip>;
 export type DeleteCanvasResponse = z.infer<typeof DeleteCanvasResponse>;
-export declare const RecoverCanvasRequest: z.ZodObject<{}, {}, {}>;
+export declare const RecoverCanvasRequest: z.ZodObject<{}, z.core.$strip>;
 export type RecoverCanvasRequest = z.infer<typeof RecoverCanvasRequest>;
 export declare const RecoverCanvasResponse: z.ZodObject<{
     name: z.ZodString;
@@ -236,7 +243,7 @@ export declare const RecoverCanvasResponse: z.ZodObject<{
         y: z.ZodNumber;
         width: z.ZodNumber;
         height: z.ZodNumber;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
@@ -247,7 +254,7 @@ export declare const RecoverCanvasResponse: z.ZodObject<{
         width: z.ZodNumber;
         height: z.ZodNumber;
         frame_rate: z.ZodNumber;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         is_smooth: z.ZodBoolean;
@@ -256,7 +263,7 @@ export declare const RecoverCanvasResponse: z.ZodObject<{
         codec: z.ZodString;
         sample_rate: z.ZodNumber;
         channels: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         mime_type: z.ZodLiteral<"image">;
@@ -264,42 +271,39 @@ export declare const RecoverCanvasResponse: z.ZodObject<{
         height: z.ZodNumber;
         is_smooth: z.ZodLiteral<false>;
         is_power_efficient: z.ZodLiteral<true>;
-    }, {}, {}>]>>;
+    }, z.core.$strip>], "mime_type">>;
     tenant_id: z.ZodString;
     canvas_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type RecoverCanvasResponse = z.infer<typeof RecoverCanvasResponse>;
 export declare const UpdateCanvasRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"remove">;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"replace">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"move">;
     from: z.ZodString;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"copy">;
     from: z.ZodString;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"test">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"_get">;
-    value: z.ZodAny;
-}, {}, {}>]>>;
+    not: z.ZodOptional<z.ZodBoolean>;
+}, z.core.$strip>], "op">>;
 export type UpdateCanvasRequest = z.infer<typeof UpdateCanvasRequest>;
 export declare const UpdateCanvasResponse: z.ZodObject<{
     name: z.ZodString;
@@ -313,7 +317,7 @@ export declare const UpdateCanvasResponse: z.ZodObject<{
         y: z.ZodNumber;
         width: z.ZodNumber;
         height: z.ZodNumber;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
@@ -324,7 +328,7 @@ export declare const UpdateCanvasResponse: z.ZodObject<{
         width: z.ZodNumber;
         height: z.ZodNumber;
         frame_rate: z.ZodNumber;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         is_smooth: z.ZodBoolean;
@@ -333,7 +337,7 @@ export declare const UpdateCanvasResponse: z.ZodObject<{
         codec: z.ZodString;
         sample_rate: z.ZodNumber;
         channels: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         mime_type: z.ZodLiteral<"image">;
@@ -341,11 +345,11 @@ export declare const UpdateCanvasResponse: z.ZodObject<{
         height: z.ZodNumber;
         is_smooth: z.ZodLiteral<false>;
         is_power_efficient: z.ZodLiteral<true>;
-    }, {}, {}>]>>;
+    }, z.core.$strip>], "mime_type">>;
     tenant_id: z.ZodString;
     canvas_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type UpdateCanvasResponse = z.infer<typeof UpdateCanvasResponse>;

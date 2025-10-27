@@ -1,5 +1,5 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
-import { z } from 'zod/v4';
+import * as z from "zod";
 import { Canvas, CanvasBase, CanvasRegistration } from './canvas.schema.js';
 import { JsonPatchOperation } from './patch-operation.schema.js';
 // #region Errors
@@ -31,7 +31,16 @@ export const ListCanvasesResponse = z.object({
     canvases: z.array(Canvas),
     next_token: z.string().nullable(),
 })
-    .describe('List assets response schema');
+    .describe('List canvases response schema');
+export const GetCanvasSuggestionsRequest = z.object({})
+    .describe('Get canvas suggestions request schema');
+export const GetCanvasSuggestionsResponse = z.object({
+    c: z.string()
+        .describe('Canvas name auto-complete for given prefix'),
+    s: z.array(z.string())
+        .describe('Canvas name suggestions for given input'),
+})
+    .describe('Get canvas suggestions response schema');
 export const ListDeletedCanvasesRequest = z.object({})
     .describe('List deleted canvases request schema');
 export const ListDeletedCanvasesResponse = z.object({

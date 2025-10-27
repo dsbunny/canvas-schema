@@ -1,4 +1,8 @@
 # Changelog
+## v2.2.9
+- Bump to `zod@4.1.11`.
+- Move Zod to `peerDependencies` so users can bring their own Zod.
+
 ## v2.1.8
 - Add API endpoint schemas.
 

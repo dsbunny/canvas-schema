@@ -1,11 +1,11 @@
-import { z } from 'zod/v4';
+import * as z from "zod";
 export declare const Viewport: z.ZodObject<{
     reference_id: z.ZodString;
     x: z.ZodNumber;
     y: z.ZodNumber;
     width: z.ZodNumber;
     height: z.ZodNumber;
-}, {}, {}>;
+}, z.core.$strip>;
 export type Viewport = z.infer<typeof Viewport>;
 export declare const CanvasBase: z.ZodObject<{
     name: z.ZodString;
@@ -19,7 +19,7 @@ export declare const CanvasBase: z.ZodObject<{
         y: z.ZodNumber;
         width: z.ZodNumber;
         height: z.ZodNumber;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
@@ -30,7 +30,7 @@ export declare const CanvasBase: z.ZodObject<{
         width: z.ZodNumber;
         height: z.ZodNumber;
         frame_rate: z.ZodNumber;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         is_smooth: z.ZodBoolean;
@@ -39,7 +39,7 @@ export declare const CanvasBase: z.ZodObject<{
         codec: z.ZodString;
         sample_rate: z.ZodNumber;
         channels: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         mime_type: z.ZodLiteral<"image">;
@@ -47,22 +47,22 @@ export declare const CanvasBase: z.ZodObject<{
         height: z.ZodNumber;
         is_smooth: z.ZodLiteral<false>;
         is_power_efficient: z.ZodLiteral<true>;
-    }, {}, {}>]>>;
-}, {}, {}>;
+    }, z.core.$strip>], "mime_type">>;
+}, z.core.$strip>;
 export type CanvasBase = z.infer<typeof CanvasBase>;
 export declare const CanvasRegistration: z.ZodObject<{
     tenant_id: z.ZodString;
     canvas_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-}, {}, {}>;
+    create_timestamp: z.ZodISODateTime;
+}, z.core.$strip>;
 export type CanvasRegistration = z.infer<typeof CanvasRegistration>;
 export declare const CanvasMetadata: z.ZodObject<{
     tenant_id: z.ZodString;
     canvas_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type CanvasMetadata = z.infer<typeof CanvasMetadata>;
 export declare const Canvas: z.ZodObject<{
     name: z.ZodString;
@@ -76,7 +76,7 @@ export declare const Canvas: z.ZodObject<{
         y: z.ZodNumber;
         width: z.ZodNumber;
         height: z.ZodNumber;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
@@ -87,7 +87,7 @@ export declare const Canvas: z.ZodObject<{
         width: z.ZodNumber;
         height: z.ZodNumber;
         frame_rate: z.ZodNumber;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         is_smooth: z.ZodBoolean;
@@ -96,7 +96,7 @@ export declare const Canvas: z.ZodObject<{
         codec: z.ZodString;
         sample_rate: z.ZodNumber;
         channels: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         mime_type: z.ZodLiteral<"image">;
@@ -104,14 +104,105 @@ export declare const Canvas: z.ZodObject<{
         height: z.ZodNumber;
         is_smooth: z.ZodLiteral<false>;
         is_power_efficient: z.ZodLiteral<true>;
-    }, {}, {}>]>>;
+    }, z.core.$strip>], "mime_type">>;
     tenant_id: z.ZodString;
     canvas_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type Canvas = z.infer<typeof Canvas>;
+export declare const DbDtoFromCanvasBase: z.ZodPipe<z.ZodObject<{
+    name: z.ZodString;
+    tags: z.ZodArray<z.ZodString>;
+    width: z.ZodNumber;
+    height: z.ZodNumber;
+    frame_rate: z.ZodNumber;
+    viewports: z.ZodArray<z.ZodObject<{
+        reference_id: z.ZodString;
+        x: z.ZodNumber;
+        y: z.ZodNumber;
+        width: z.ZodNumber;
+        height: z.ZodNumber;
+    }, z.core.$strip>>;
+    capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
+        mime_subtype: z.ZodString;
+        is_supported: z.ZodBoolean;
+        is_smooth: z.ZodBoolean;
+        is_power_efficient: z.ZodBoolean;
+        mime_type: z.ZodLiteral<"video">;
+        codec: z.ZodString;
+        width: z.ZodNumber;
+        height: z.ZodNumber;
+        frame_rate: z.ZodNumber;
+    }, z.core.$strip>, z.ZodObject<{
+        mime_subtype: z.ZodString;
+        is_supported: z.ZodBoolean;
+        is_smooth: z.ZodBoolean;
+        is_power_efficient: z.ZodBoolean;
+        mime_type: z.ZodLiteral<"audio">;
+        codec: z.ZodString;
+        sample_rate: z.ZodNumber;
+        channels: z.ZodString;
+    }, z.core.$strip>, z.ZodObject<{
+        mime_subtype: z.ZodString;
+        is_supported: z.ZodBoolean;
+        mime_type: z.ZodLiteral<"image">;
+        width: z.ZodNumber;
+        height: z.ZodNumber;
+        is_smooth: z.ZodLiteral<false>;
+        is_power_efficient: z.ZodLiteral<true>;
+    }, z.core.$strip>], "mime_type">>;
+}, z.core.$strip>, z.ZodTransform<{
+    tags: string;
+    viewports: string;
+    capabilities: string;
+    name: string;
+    width: number;
+    height: number;
+    frame_rate: number;
+}, {
+    name: string;
+    tags: string[];
+    width: number;
+    height: number;
+    frame_rate: number;
+    viewports: {
+        reference_id: string;
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }[];
+    capabilities: ({
+        mime_subtype: string;
+        is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
+        mime_type: "video";
+        codec: string;
+        width: number;
+        height: number;
+        frame_rate: number;
+    } | {
+        mime_subtype: string;
+        is_supported: boolean;
+        is_smooth: boolean;
+        is_power_efficient: boolean;
+        mime_type: "audio";
+        codec: string;
+        sample_rate: number;
+        channels: string;
+    } | {
+        mime_subtype: string;
+        is_supported: boolean;
+        mime_type: "image";
+        width: number;
+        height: number;
+        is_smooth: false;
+        is_power_efficient: true;
+    })[];
+}>>;
 export declare const DbDtoFromCanvas: z.ZodPipe<z.ZodObject<{
     name: z.ZodString;
     tags: z.ZodArray<z.ZodString>;
@@ -124,7 +215,7 @@ export declare const DbDtoFromCanvas: z.ZodPipe<z.ZodObject<{
         y: z.ZodNumber;
         width: z.ZodNumber;
         height: z.ZodNumber;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     capabilities: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
@@ -135,7 +226,7 @@ export declare const DbDtoFromCanvas: z.ZodPipe<z.ZodObject<{
         width: z.ZodNumber;
         height: z.ZodNumber;
         frame_rate: z.ZodNumber;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         is_smooth: z.ZodBoolean;
@@ -144,7 +235,7 @@ export declare const DbDtoFromCanvas: z.ZodPipe<z.ZodObject<{
         codec: z.ZodString;
         sample_rate: z.ZodNumber;
         channels: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         mime_subtype: z.ZodString;
         is_supported: z.ZodBoolean;
         mime_type: z.ZodLiteral<"image">;
@@ -152,13 +243,13 @@ export declare const DbDtoFromCanvas: z.ZodPipe<z.ZodObject<{
         height: z.ZodNumber;
         is_smooth: z.ZodLiteral<false>;
         is_power_efficient: z.ZodLiteral<true>;
-    }, {}, {}>]>>;
+    }, z.core.$strip>], "mime_type">>;
     tenant_id: z.ZodString;
     canvas_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>, z.ZodTransform<{
+}, z.core.$strip>, z.ZodTransform<{
     tags: string;
     viewports: string;
     capabilities: string;
@@ -231,7 +322,7 @@ export declare const DbDtoToCanvas: z.ZodPipe<z.ZodObject<{
     create_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
     modify_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
     is_deleted: z.ZodDefault<z.ZodNumber>;
-}, {}, {}>, z.ZodTransform<{
+}, z.core.$strip>, z.ZodTransform<{
     name: string;
     tags: string[];
     width: number;

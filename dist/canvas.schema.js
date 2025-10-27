@@ -1,5 +1,5 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
-import { z } from 'zod/v4';
+import * as z from "zod";
 import { CapabilityTypes } from '@dsbunny/capability-schema';
 import { sqliteDateSchema } from './sqlite-date.schema.js';
 export const Viewport = z.object({
@@ -48,6 +48,14 @@ export const CanvasMetadata = CanvasRegistration.extend({
 })
     .describe('The metadata of the canvas');
 export const Canvas = CanvasBase.extend(CanvasMetadata.shape);
+export const DbDtoFromCanvasBase = CanvasBase.transform((canvas) => {
+    return {
+        ...canvas,
+        tags: JSON.stringify(canvas.tags),
+        viewports: JSON.stringify(canvas.viewports),
+        capabilities: JSON.stringify(canvas.capabilities),
+    };
+});
 export const DbDtoFromCanvas = Canvas.transform((canvas) => {
     return {
         ...canvas,
@@ -70,7 +78,7 @@ export const DbDtoToCanvas = z.object({
     modify_timestamp: sqliteDateSchema,
     is_deleted: z.number().default(0),
 })
-    .transform((dto, ctx) => {
+    .transform((dto) => {
     return {
         ...dto,
         tags: JSON.parse(dto.tags),
