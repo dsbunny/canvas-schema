@@ -55,6 +55,16 @@ export const GetCanvasSuggestionsResponse = z.object({
 	.describe('Get canvas suggestions response schema');
 export type GetCanvasSuggestionsResponse = z.infer<typeof GetCanvasSuggestionsResponse>;
 
+export const GetCanvasAvailabilityRequest = z.object({})
+	.describe('Get canvas availability request schema');
+export type GetCanvasAvailabilityRequest = z.infer<typeof GetCanvasAvailabilityRequest>;
+export const GetCanvasAvailabilityResponse = z.object({
+	is_available: z.boolean()
+		.describe('Indicates if the canvas name is available'),
+})
+	.describe('Get canvas availability response schema');
+export type GetCanvasAvailabilityResponse = z.infer<typeof GetCanvasAvailabilityResponse>;
+
 export const ListDeletedCanvasesRequest = z.object({})
 	.describe('List deleted canvases request schema');
 export type ListDeletedCanvasesRequest = z.infer<typeof ListDeletedCanvasesRequest>;

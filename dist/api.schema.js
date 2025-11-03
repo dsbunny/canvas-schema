@@ -41,6 +41,13 @@ export const GetCanvasSuggestionsResponse = z.object({
         .describe('Canvas name suggestions for given input'),
 })
     .describe('Get canvas suggestions response schema');
+export const GetCanvasAvailabilityRequest = z.object({})
+    .describe('Get canvas availability request schema');
+export const GetCanvasAvailabilityResponse = z.object({
+    is_available: z.boolean()
+        .describe('Indicates if the canvas name is available'),
+})
+    .describe('Get canvas availability response schema');
 export const ListDeletedCanvasesRequest = z.object({})
     .describe('List deleted canvases request schema');
 export const ListDeletedCanvasesResponse = z.object({

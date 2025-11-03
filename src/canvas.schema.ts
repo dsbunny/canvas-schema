@@ -3,6 +3,7 @@
 import * as z from "zod";
 import { CapabilityTypes } from '@dsbunny/capability-schema';
 import { sqliteDateSchema } from './sqlite-date.schema.js';
+import { jsonSafeParser } from './json-safe-parser.js';
 
 export const Viewport = z.object({
 	reference_id: z.string()
@@ -82,7 +83,7 @@ export const DbDtoToCanvas = z.object({
 	canvas_id: z.uuid(),
 	tenant_id: z.uuid(),
 	name: z.string(),
-	tags: z.string(),
+	tags: z.string().max(65535),
 	width: z.number().int().min(1).max(99999),
 	height: z.number().int().min(1).max(99999),
 	frame_rate: z.number().int().min(1).max(1000),
@@ -92,12 +93,40 @@ export const DbDtoToCanvas = z.object({
 	modify_timestamp: sqliteDateSchema,
 	is_deleted: z.number().default(0),
 })
-.transform((dto): Canvas => {
+.transform((dto, ctx): Canvas => {
+	const tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.tags);
+	if(!tags_result.success) {
+		ctx.addIssue({
+			code: "custom",
+			message: 'Invalid tags',
+			fatal: true,
+		});
+		return z.NEVER;
+	}
+	const viewports_result = jsonSafeParser(z.array(Viewport)).safeParse(dto.viewports);
+	if(!viewports_result.success) {
+		ctx.addIssue({
+			code: "custom",
+			message: 'Invalid viewports',
+			fatal: true,
+		});
+		return z.NEVER;
+	}
+	const capabilities_result = jsonSafeParser(z.array(CapabilityTypes)).safeParse(dto.capabilities);
+	if(!capabilities_result.success) {
+		ctx.addIssue({
+			code: "custom",
+			message: 'Invalid capabilities',
+			fatal: true,
+		});
+		return z.NEVER;
+	}
+
 	return {
 		...dto,
-		tags: JSON.parse(dto.tags),
-		viewports: JSON.parse(dto.viewports),
-		capabilities: JSON.parse(dto.capabilities),
+		tags: tags_result.data,
+		viewports: viewports_result.data,
+		capabilities: capabilities_result.data,
 		is_deleted: Boolean(dto.is_deleted),
 	};
 });

@@ -1,0 +1,2 @@
+import * as z from "zod";
+export declare function jsonSafeParser<T extends z.ZodTypeAny>(schema: T): z.ZodPipe<z.ZodTransform<any, any>, T>;
