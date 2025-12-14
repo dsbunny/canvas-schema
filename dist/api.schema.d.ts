@@ -285,7 +285,7 @@ export declare const RecoverCanvasResponse: z.ZodObject<{
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, z.core.$strip>;
 export type RecoverCanvasResponse = z.infer<typeof RecoverCanvasResponse>;
-export declare const UpdateCanvasRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
+export declare const PatchCanvasRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
@@ -310,8 +310,8 @@ export declare const UpdateCanvasRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "op">>;
-export type UpdateCanvasRequest = z.infer<typeof UpdateCanvasRequest>;
-export declare const UpdateCanvasResponse: z.ZodObject<{
+export type PatchCanvasRequest = z.infer<typeof PatchCanvasRequest>;
+export declare const PatchCanvasResponse: z.ZodObject<{
     name: z.ZodString;
     tags: z.ZodArray<z.ZodString>;
     width: z.ZodNumber;
@@ -358,4 +358,4 @@ export declare const UpdateCanvasResponse: z.ZodObject<{
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, z.core.$strip>;
-export type UpdateCanvasResponse = z.infer<typeof UpdateCanvasResponse>;
+export type PatchCanvasResponse = z.infer<typeof PatchCanvasResponse>;

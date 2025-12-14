@@ -1,4 +1,7 @@
 # Changelog
+## v3.0.11
+- Rename `UpdateCanvasRequest` to `PatchCanvasRequest` and set a limit of 50 operations.
+
 ## v2.3.10
 - Add API for name availability.
 

@@ -103,10 +103,10 @@ export const RecoverCanvasResponse = Canvas
 	.describe('Recover canvas response schema');
 export type RecoverCanvasResponse = z.infer<typeof RecoverCanvasResponse>;
 
-export const UpdateCanvasRequest = z.array(JsonPatchOperation)
-	.describe('Update canvas request schema');
-export type UpdateCanvasRequest = z.infer<typeof UpdateCanvasRequest>;
-export const UpdateCanvasResponse = Canvas
-	.describe('Update canvas response schema');
-export type UpdateCanvasResponse = z.infer<typeof UpdateCanvasResponse>;
+export const PatchCanvasRequest = z.array(JsonPatchOperation).max(50)
+	.describe('Patch canvas request schema');
+export type PatchCanvasRequest = z.infer<typeof PatchCanvasRequest>;
+export const PatchCanvasResponse = Canvas
+	.describe('Patch canvas response schema');
+export type PatchCanvasResponse = z.infer<typeof PatchCanvasResponse>;
 // #endregion

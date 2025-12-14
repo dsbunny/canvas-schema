@@ -71,9 +71,9 @@ export const RecoverCanvasRequest = z.object({})
     .describe('Recover canvas request schema');
 export const RecoverCanvasResponse = Canvas
     .describe('Recover canvas response schema');
-export const UpdateCanvasRequest = z.array(JsonPatchOperation)
-    .describe('Update canvas request schema');
-export const UpdateCanvasResponse = Canvas
-    .describe('Update canvas response schema');
+export const PatchCanvasRequest = z.array(JsonPatchOperation).max(50)
+    .describe('Patch canvas request schema');
+export const PatchCanvasResponse = Canvas
+    .describe('Patch canvas response schema');
 // #endregion
 //# sourceMappingURL=api.schema.js.map
