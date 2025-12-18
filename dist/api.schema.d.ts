@@ -69,8 +69,8 @@ export type ListCanvasesResponse = z.infer<typeof ListCanvasesResponse>;
 export declare const GetCanvasSuggestionsRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetCanvasSuggestionsRequest = z.infer<typeof GetCanvasSuggestionsRequest>;
 export declare const GetCanvasSuggestionsResponse: z.ZodObject<{
-    c: z.ZodString;
-    s: z.ZodArray<z.ZodString>;
+    c: z.ZodTuple<[z.ZodString, z.ZodNullable<z.ZodString>], null>;
+    s: z.ZodArray<z.ZodTuple<[z.ZodString, z.ZodNullable<z.ZodString>], null>>;
 }, z.core.$strip>;
 export type GetCanvasSuggestionsResponse = z.infer<typeof GetCanvasSuggestionsResponse>;
 export declare const GetCanvasAvailabilityRequest: z.ZodObject<{}, z.core.$strip>;

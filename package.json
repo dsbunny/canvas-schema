@@ -1,6 +1,6 @@
 {
 	"name": "@dsbunny/canvas-schema",
-	"version": "3.0.11",
+	"version": "4.0.12",
 	"description": "Schema for Canvas definitions and their capabilities",
 	"type": "module",
 	"main": "dist/index.js",

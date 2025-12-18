@@ -35,9 +35,9 @@ export const ListCanvasesResponse = z.object({
 export const GetCanvasSuggestionsRequest = z.object({})
     .describe('Get canvas suggestions request schema');
 export const GetCanvasSuggestionsResponse = z.object({
-    c: z.string()
+    c: z.tuple([z.string(), z.string().nullable()])
         .describe('Canvas name auto-complete for given prefix'),
-    s: z.array(z.string())
+    s: z.array(z.tuple([z.string(), z.string().nullable()]))
         .describe('Canvas name suggestions for given input'),
 })
     .describe('Get canvas suggestions response schema');

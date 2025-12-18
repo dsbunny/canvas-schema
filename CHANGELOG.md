@@ -1,4 +1,7 @@
 # Changelog
+## v4.0.12
+- Extend _suggestions_ with canvas ID in responses.
+
 ## v3.0.11
 - Rename `UpdateCanvasRequest` to `PatchCanvasRequest` and set a limit of 50 operations.
 
