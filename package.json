@@ -1,7 +1,7 @@
 {
-	"name": "@dsbunny/canvas-schema",
-	"version": "4.0.12",
-	"description": "Schema for Canvas definitions and their capabilities",
+	"name": "@dsbunny/canvasdb-schema",
+	"version": "6.0.15",
+	"description": "Schema for CanvasDB API and Canvas definitions with their capabilities",
 	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -16,12 +16,16 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
+		"@dsbunny/capdb-schema": "github:dsbunny/capdb-schema#b89d320",
+		"@dsbunny/error-schema": "github:dsbunny/error-schema#be4645d",
+		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#4178b06",
 		"typescript": "^5.9.3",
-		"zod": "^4.1.12",
-		"@dsbunny/capability-schema": "github:dsbunny/capability-schema#dbe2588"
+		"zod": "^4.3.6"
 	},
 	"peerDependencies": {
-		"zod": "^4.0.0",
-		"@dsbunny/capability-schema": "github:dsbunny/capability-schema"
+		"@dsbunny/capdb-schema": "github:dsbunny/capdb-schema",
+		"@dsbunny/error-schema": "github:dsbunny/error-schema",
+		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema",
+		"zod": "^4.3.0"
 	}
 }

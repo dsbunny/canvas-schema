@@ -1,4 +1,19 @@
 # Changelog
+## v6.0.15
+- Rename exports `CanvasDaemon` to `CanvasDb`.
+- Update import to `@dsbunny/capdb-schema`.
+- Drop `@dsbunny/sequential-task`, internal schema moved to internal package.
+- Bump to `zod@4.3.6`.
+
+## v5.1.14
+- Add new schema for task inspection.
+- Add dependency on `@dsbunny/sequential-task`.
+
+## v5.0.13
+- Add new composite `CanvasDaemonRequest` and `CanvasDaemonResponse` for public API.
+- Migrate to `@dsbunny/error-schema` and `@dsbunny/webhook-schema`.
+- New internal schema for WebHook tasks.
+
 ## v4.0.12
 - Extend _suggestions_ with canvas ID in responses.
 

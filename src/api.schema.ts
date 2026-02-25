@@ -1,36 +1,13 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 
 import * as z from "zod";
-import { Canvas, CanvasBase, CanvasRegistration } from './canvas.schema.js';
+import { ErrorResponse } from "@dsbunny/error-schema";
+import {
+	Canvas,
+	CanvasBase,
+	CanvasRegistration,
+} from './canvas.schema.js';
 import { JsonPatchOperation } from './patch-operation.schema.js';
-
-// #region Errors
-export const ErrorResponse = z.object({
-	code: z.string()
-		.describe('Error code representing the type of error.'),
-	message: z.string()
-		.describe('Error message describing the issue.'),
-	detail: z.string()
-		.describe('Additional details about the error, if available.'),
-	timestamp: z.iso.datetime()
-		.describe('Timestamp when the error occurred (ISO_8601 format).'),
-})
-	.describe('Error response schema');
-export type ErrorResponse = z.infer<typeof ErrorResponse>;
-// #endregion
-
-// #region WebHook
-export const WebHookRequest = z.object({
-	ref_id: z.string(),
-	class: z.string(),
-})
-	  .describe('WebHook request schema');
-export type WebHookRequest = z.infer<typeof WebHookRequest>;
-
-export const WebHookResponse = z.object({})
-	  .describe('WebHook response schema');
-export type WebHookResponse = z.infer<typeof WebHookResponse>;
-// #endregion
 
 // #region Canvases
 export const ListCanvasesRequest = z.object({})
@@ -109,4 +86,35 @@ export type PatchCanvasRequest = z.infer<typeof PatchCanvasRequest>;
 export const PatchCanvasResponse = Canvas
 	.describe('Patch canvas response schema');
 export type PatchCanvasResponse = z.infer<typeof PatchCanvasResponse>;
+// #endregion
+
+// #region API
+export const CanvasDbRequest = z.union([
+	ListCanvasesRequest,
+	GetCanvasSuggestionsRequest,
+	GetCanvasAvailabilityRequest,
+	ListDeletedCanvasesRequest,
+	CreateCanvasRequest,
+	GetCanvasRequest,
+	DeleteCanvasRequest,
+	RecoverCanvasRequest,
+	PatchCanvasRequest,
+])
+	.describe('CanvasDB request schema');
+export type CanvasDbRequest = z.infer<typeof CanvasDbRequest>;
+
+export const CanvasDbResponse = z.union([
+	ListCanvasesResponse,
+	GetCanvasSuggestionsResponse,
+	GetCanvasAvailabilityResponse,
+	ListDeletedCanvasesResponse,
+	CreateCanvasResponse,
+	GetCanvasResponse,
+	DeleteCanvasResponse,
+	RecoverCanvasResponse,
+	PatchCanvasResponse,
+	ErrorResponse,
+])
+	.describe('CanvasDB response schema');
+export type CanvasDbResponse = z.infer<typeof CanvasDbResponse>;
 // #endregion

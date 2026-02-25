@@ -1,4 +1,4 @@
-# @dsbunny/canvas-schema
+# @dsbunny/canvasdb-schema
 _ZOD_ based schema for a canvas and its media capabilities.
 
 ## Dependency Installation

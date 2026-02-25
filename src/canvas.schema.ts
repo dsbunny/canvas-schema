@@ -1,7 +1,7 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 
 import * as z from "zod";
-import { CapabilityTypes } from '@dsbunny/capability-schema';
+import { CapabilityTypes } from '@dsbunny/capdb-schema';
 import { sqliteDateSchema } from './sqlite-date.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
 
